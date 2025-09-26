@@ -1,0 +1,305 @@
+2025-09-26 16:36:20 | INFO | {'message': 'I just saw a movie! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:36:20', 'category': 'entertainment', 'sentiment': 0.9, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-26 16:36:23 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:36:23 | INFO | Processed message: {'message': 'I just saw a movie! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:36:20', 'category': 'entertainment', 'sentiment': 0.9, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-26 16:36:23 | INFO | Inserted one message into SQLite.
+2025-09-26 16:36:25 | INFO | {'message': 'I just loved travel! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:36:25', 'category': 'travel', 'sentiment': 0.74, 'keyword_mentioned': 'travel', 'message_length': 35}
+2025-09-26 16:36:28 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:36:28 | INFO | Processed message: {'message': 'I just loved travel! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:36:25', 'category': 'travel', 'sentiment': 0.74, 'keyword_mentioned': 'travel', 'message_length': 35}
+2025-09-26 16:36:28 | INFO | Inserted one message into SQLite.
+2025-09-26 16:36:30 | INFO | {'message': 'I just shared recipe! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-26 16:36:30', 'category': 'food', 'sentiment': 0.19, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-26 16:36:33 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:36:33 | INFO | Processed message: {'message': 'I just shared recipe! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-26 16:36:30', 'category': 'food', 'sentiment': 0.19, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-26 16:36:33 | INFO | Inserted one message into SQLite.
+2025-09-26 16:36:35 | INFO | {'message': 'I just tried an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:36:35', 'category': 'other', 'sentiment': 0.87, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:36:38 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:36:38 | INFO | Processed message: {'message': 'I just tried an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:36:35', 'category': 'other', 'sentiment': 0.87, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:36:38 | INFO | Inserted one message into SQLite.
+2025-09-26 16:36:40 | INFO | {'message': 'I just found a movie! It was exciting.', 'author': 'Eve', 'timestamp': '2025-09-26 16:36:40', 'category': 'entertainment', 'sentiment': 0.27, 'keyword_mentioned': 'movie', 'message_length': 38}
+2025-09-26 16:36:43 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:36:43 | INFO | Processed message: {'message': 'I just found a movie! It was exciting.', 'author': 'Eve', 'timestamp': '2025-09-26 16:36:40', 'category': 'entertainment', 'sentiment': 0.27, 'keyword_mentioned': 'movie', 'message_length': 38}
+2025-09-26 16:36:43 | INFO | Inserted one message into SQLite.
+2025-09-26 16:36:45 | INFO | {'message': 'I just shared a movie! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:36:45', 'category': 'entertainment', 'sentiment': 0.11, 'keyword_mentioned': 'movie', 'message_length': 36}
+2025-09-26 16:36:48 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:36:48 | INFO | Processed message: {'message': 'I just shared a movie! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:36:45', 'category': 'entertainment', 'sentiment': 0.11, 'keyword_mentioned': 'movie', 'message_length': 36}
+2025-09-26 16:36:48 | INFO | Inserted one message into SQLite.
+2025-09-26 16:36:50 | INFO | {'message': 'I just found Python! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:36:50', 'category': 'tech', 'sentiment': 0.46, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-26 16:36:53 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:36:53 | INFO | Processed message: {'message': 'I just found Python! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:36:50', 'category': 'tech', 'sentiment': 0.46, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-26 16:36:53 | INFO | Inserted one message into SQLite.
+2025-09-26 16:36:55 | INFO | {'message': 'I just found Python! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:36:55', 'category': 'tech', 'sentiment': 0.19, 'keyword_mentioned': 'Python', 'message_length': 36}
+2025-09-26 16:36:58 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:36:58 | INFO | Processed message: {'message': 'I just found Python! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:36:55', 'category': 'tech', 'sentiment': 0.19, 'keyword_mentioned': 'Python', 'message_length': 36}
+2025-09-26 16:36:58 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:00 | INFO | {'message': 'I just shared Python! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:37:00', 'category': 'tech', 'sentiment': 0.57, 'keyword_mentioned': 'Python', 'message_length': 35}
+2025-09-26 16:37:03 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:37:03 | INFO | Processed message: {'message': 'I just shared Python! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:37:00', 'category': 'tech', 'sentiment': 0.57, 'keyword_mentioned': 'Python', 'message_length': 35}
+2025-09-26 16:37:03 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:06 | INFO | {'message': 'I just found game! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:37:06', 'category': 'gaming', 'sentiment': 0.06, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:37:08 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:37:08 | INFO | Processed message: {'message': 'I just found game! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:37:06', 'category': 'gaming', 'sentiment': 0.06, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:37:08 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:11 | INFO | {'message': 'I just saw game! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:11', 'category': 'gaming', 'sentiment': 0.11, 'keyword_mentioned': 'game', 'message_length': 30}
+2025-09-26 16:37:13 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:37:13 | INFO | Processed message: {'message': 'I just saw game! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:11', 'category': 'gaming', 'sentiment': 0.11, 'keyword_mentioned': 'game', 'message_length': 30}
+2025-09-26 16:37:13 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:16 | INFO | {'message': 'I just loved Python! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:37:16', 'category': 'tech', 'sentiment': 0.39, 'keyword_mentioned': 'Python', 'message_length': 35}
+2025-09-26 16:37:18 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:37:18 | INFO | Processed message: {'message': 'I just loved Python! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:37:16', 'category': 'tech', 'sentiment': 0.39, 'keyword_mentioned': 'Python', 'message_length': 35}
+2025-09-26 16:37:18 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:21 | INFO | {'message': 'I just loved game! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:21', 'category': 'gaming', 'sentiment': 0.54, 'keyword_mentioned': 'game', 'message_length': 32}
+2025-09-26 16:37:23 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:37:23 | INFO | Processed message: {'message': 'I just loved game! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:21', 'category': 'gaming', 'sentiment': 0.54, 'keyword_mentioned': 'game', 'message_length': 32}
+2025-09-26 16:37:23 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:26 | INFO | {'message': 'I just found a trick! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:26', 'category': 'other', 'sentiment': 0.35, 'keyword_mentioned': 'other', 'message_length': 38}
+2025-09-26 16:37:28 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:37:28 | INFO | Processed message: {'message': 'I just found a trick! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:26', 'category': 'other', 'sentiment': 0.35, 'keyword_mentioned': 'other', 'message_length': 38}
+2025-09-26 16:37:28 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:31 | INFO | {'message': 'I just found a meme! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:31', 'category': 'humor', 'sentiment': 0.61, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-26 16:37:33 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:37:33 | INFO | Processed message: {'message': 'I just found a meme! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:31', 'category': 'humor', 'sentiment': 0.61, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-26 16:37:33 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:36 | INFO | {'message': 'I just found a story! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:37:36', 'category': 'other', 'sentiment': 0.45, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:37:38 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=8
+2025-09-26 16:37:38 | INFO | Processed message: {'message': 'I just found a story! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:37:36', 'category': 'other', 'sentiment': 0.45, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:37:38 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:41 | INFO | {'message': 'I just saw a meme! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:37:41', 'category': 'humor', 'sentiment': 0.69, 'keyword_mentioned': 'meme', 'message_length': 34}
+2025-09-26 16:37:43 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:37:43 | INFO | Processed message: {'message': 'I just saw a meme! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:37:41', 'category': 'humor', 'sentiment': 0.69, 'keyword_mentioned': 'meme', 'message_length': 34}
+2025-09-26 16:37:43 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:46 | INFO | {'message': 'I just loved JavaScript! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:46', 'category': 'tech', 'sentiment': 0.65, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
+2025-09-26 16:37:48 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:37:48 | INFO | Processed message: {'message': 'I just loved JavaScript! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:46', 'category': 'tech', 'sentiment': 0.65, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
+2025-09-26 16:37:48 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:51 | INFO | {'message': 'I just tried JavaScript! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:51', 'category': 'tech', 'sentiment': 0.92, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
+2025-09-26 16:37:53 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:37:53 | INFO | Processed message: {'message': 'I just tried JavaScript! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:37:51', 'category': 'tech', 'sentiment': 0.92, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
+2025-09-26 16:37:53 | INFO | Inserted one message into SQLite.
+2025-09-26 16:37:56 | INFO | {'message': 'I just loved JavaScript! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:37:56', 'category': 'tech', 'sentiment': 0.89, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
+2025-09-26 16:37:58 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:37:58 | INFO | Processed message: {'message': 'I just loved JavaScript! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:37:56', 'category': 'tech', 'sentiment': 0.89, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
+2025-09-26 16:37:58 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:01 | INFO | {'message': 'I just tried a meme! It was exciting.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:01', 'category': 'humor', 'sentiment': 0.53, 'keyword_mentioned': 'meme', 'message_length': 37}
+2025-09-26 16:38:03 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=8
+2025-09-26 16:38:03 | INFO | Processed message: {'message': 'I just tried a meme! It was exciting.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:01', 'category': 'humor', 'sentiment': 0.53, 'keyword_mentioned': 'meme', 'message_length': 37}
+2025-09-26 16:38:03 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:06 | INFO | {'message': 'I just tried Python! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:06', 'category': 'tech', 'sentiment': 0.7, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-26 16:38:08 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:38:08 | INFO | Processed message: {'message': 'I just tried Python! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:06', 'category': 'tech', 'sentiment': 0.7, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-26 16:38:08 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:11 | INFO | {'message': 'I just loved game! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:11', 'category': 'gaming', 'sentiment': 0.32, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:38:13 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:38:13 | INFO | Processed message: {'message': 'I just loved game! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:11', 'category': 'gaming', 'sentiment': 0.32, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:38:13 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:16 | INFO | {'message': 'I just loved travel! It was weird.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:16', 'category': 'travel', 'sentiment': 0.18, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:38:18 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:38:18 | INFO | Processed message: {'message': 'I just loved travel! It was weird.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:16', 'category': 'travel', 'sentiment': 0.18, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:38:18 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:21 | INFO | {'message': 'I just shared a story! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:21', 'category': 'other', 'sentiment': 0.77, 'keyword_mentioned': 'other', 'message_length': 38}
+2025-09-26 16:38:23 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:38:23 | INFO | Processed message: {'message': 'I just shared a story! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:21', 'category': 'other', 'sentiment': 0.77, 'keyword_mentioned': 'other', 'message_length': 38}
+2025-09-26 16:38:23 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:26 | INFO | {'message': 'I just loved a trick! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:26', 'category': 'other', 'sentiment': 0.88, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:38:28 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:38:28 | INFO | Processed message: {'message': 'I just loved a trick! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:26', 'category': 'other', 'sentiment': 0.88, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:38:28 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:31 | INFO | {'message': 'I just tried JavaScript! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:31', 'category': 'tech', 'sentiment': 0.71, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
+2025-09-26 16:38:33 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:38:33 | INFO | Processed message: {'message': 'I just tried JavaScript! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:31', 'category': 'tech', 'sentiment': 0.71, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
+2025-09-26 16:38:33 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:36 | INFO | {'message': 'I just shared a movie! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:36', 'category': 'entertainment', 'sentiment': 0.68, 'keyword_mentioned': 'movie', 'message_length': 38}
+2025-09-26 16:38:38 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:38:38 | INFO | Processed message: {'message': 'I just shared a movie! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:36', 'category': 'entertainment', 'sentiment': 0.68, 'keyword_mentioned': 'movie', 'message_length': 38}
+2025-09-26 16:38:39 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:41 | INFO | {'message': 'I just saw game! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:41', 'category': 'gaming', 'sentiment': 0.35, 'keyword_mentioned': 'game', 'message_length': 30}
+2025-09-26 16:38:44 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:38:44 | INFO | Processed message: {'message': 'I just saw game! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:38:41', 'category': 'gaming', 'sentiment': 0.35, 'keyword_mentioned': 'game', 'message_length': 30}
+2025-09-26 16:38:44 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:46 | INFO | {'message': 'I just loved recipe! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:46', 'category': 'food', 'sentiment': 0.74, 'keyword_mentioned': 'recipe', 'message_length': 34}
+2025-09-26 16:38:49 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:38:49 | INFO | Processed message: {'message': 'I just loved recipe! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:46', 'category': 'food', 'sentiment': 0.74, 'keyword_mentioned': 'recipe', 'message_length': 34}
+2025-09-26 16:38:49 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:51 | INFO | {'message': 'I just shared Python! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:51', 'category': 'tech', 'sentiment': 0.78, 'keyword_mentioned': 'Python', 'message_length': 35}
+2025-09-26 16:38:54 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:38:54 | INFO | Processed message: {'message': 'I just shared Python! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:38:51', 'category': 'tech', 'sentiment': 0.78, 'keyword_mentioned': 'Python', 'message_length': 35}
+2025-09-26 16:38:54 | INFO | Inserted one message into SQLite.
+2025-09-26 16:38:56 | INFO | {'message': 'I just tried a meme! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:56', 'category': 'humor', 'sentiment': 0.21, 'keyword_mentioned': 'meme', 'message_length': 34}
+2025-09-26 16:38:59 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:38:59 | INFO | Processed message: {'message': 'I just tried a meme! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:38:56', 'category': 'humor', 'sentiment': 0.21, 'keyword_mentioned': 'meme', 'message_length': 34}
+2025-09-26 16:38:59 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:01 | INFO | {'message': 'I just found a story! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:39:01', 'category': 'other', 'sentiment': 0.17, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:39:04 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:39:04 | INFO | Processed message: {'message': 'I just found a story! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:39:01', 'category': 'other', 'sentiment': 0.17, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:39:04 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:06 | INFO | {'message': 'I just tried recipe! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:06', 'category': 'food', 'sentiment': 0.66, 'keyword_mentioned': 'recipe', 'message_length': 36}
+2025-09-26 16:39:09 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:39:09 | INFO | Processed message: {'message': 'I just tried recipe! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:06', 'category': 'food', 'sentiment': 0.66, 'keyword_mentioned': 'recipe', 'message_length': 36}
+2025-09-26 16:39:09 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:11 | INFO | {'message': 'I just tried a story! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:11', 'category': 'other', 'sentiment': 0.31, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:39:14 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:39:14 | INFO | Processed message: {'message': 'I just tried a story! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:11', 'category': 'other', 'sentiment': 0.31, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:39:14 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:16 | INFO | {'message': 'I just loved JavaScript! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:39:16', 'category': 'tech', 'sentiment': 0.1, 'keyword_mentioned': 'JavaScript', 'message_length': 38}
+2025-09-26 16:39:19 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:39:19 | INFO | Processed message: {'message': 'I just loved JavaScript! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:39:16', 'category': 'tech', 'sentiment': 0.1, 'keyword_mentioned': 'JavaScript', 'message_length': 38}
+2025-09-26 16:39:19 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:21 | INFO | {'message': 'I just saw a story! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:39:21', 'category': 'other', 'sentiment': 0.62, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:39:24 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:39:24 | INFO | Processed message: {'message': 'I just saw a story! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:39:21', 'category': 'other', 'sentiment': 0.62, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:39:24 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:26 | INFO | {'message': 'I just tried Python! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:39:26', 'category': 'tech', 'sentiment': 0.12, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-26 16:39:29 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:39:29 | INFO | Processed message: {'message': 'I just tried Python! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:39:26', 'category': 'tech', 'sentiment': 0.12, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-26 16:39:29 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:31 | INFO | {'message': 'I just shared recipe! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:39:31', 'category': 'food', 'sentiment': 0.11, 'keyword_mentioned': 'recipe', 'message_length': 37}
+2025-09-26 16:39:34 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:39:34 | INFO | Processed message: {'message': 'I just shared recipe! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:39:31', 'category': 'food', 'sentiment': 0.11, 'keyword_mentioned': 'recipe', 'message_length': 37}
+2025-09-26 16:39:34 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:36 | INFO | {'message': 'I just shared game! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:39:36', 'category': 'gaming', 'sentiment': 0.25, 'keyword_mentioned': 'game', 'message_length': 34}
+2025-09-26 16:39:39 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:39:39 | INFO | Processed message: {'message': 'I just shared game! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:39:36', 'category': 'gaming', 'sentiment': 0.25, 'keyword_mentioned': 'game', 'message_length': 34}
+2025-09-26 16:39:39 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:41 | INFO | {'message': 'I just loved game! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:39:41', 'category': 'gaming', 'sentiment': 0.98, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:39:44 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:39:44 | INFO | Processed message: {'message': 'I just loved game! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:39:41', 'category': 'gaming', 'sentiment': 0.98, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:39:44 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:46 | INFO | {'message': 'I just tried an app! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:46', 'category': 'other', 'sentiment': 0.11, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:39:49 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:39:49 | INFO | Processed message: {'message': 'I just tried an app! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:46', 'category': 'other', 'sentiment': 0.11, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:39:49 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:51 | INFO | {'message': 'I just tried a meme! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:51', 'category': 'humor', 'sentiment': 0.89, 'keyword_mentioned': 'meme', 'message_length': 35}
+2025-09-26 16:39:54 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:39:54 | INFO | Processed message: {'message': 'I just tried a meme! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:39:51', 'category': 'humor', 'sentiment': 0.89, 'keyword_mentioned': 'meme', 'message_length': 35}
+2025-09-26 16:39:54 | INFO | Inserted one message into SQLite.
+2025-09-26 16:39:56 | INFO | {'message': 'I just saw Python! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:39:56', 'category': 'tech', 'sentiment': 0.77, 'keyword_mentioned': 'Python', 'message_length': 32}
+2025-09-26 16:39:59 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:39:59 | INFO | Processed message: {'message': 'I just saw Python! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:39:56', 'category': 'tech', 'sentiment': 0.77, 'keyword_mentioned': 'Python', 'message_length': 32}
+2025-09-26 16:39:59 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:01 | INFO | {'message': 'I just saw travel! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:01', 'category': 'travel', 'sentiment': 0.71, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:40:04 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:40:04 | INFO | Processed message: {'message': 'I just saw travel! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:01', 'category': 'travel', 'sentiment': 0.71, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:40:04 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:06 | INFO | {'message': 'I just shared recipe! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:06', 'category': 'food', 'sentiment': 0.79, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-26 16:40:09 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:40:09 | INFO | Processed message: {'message': 'I just shared recipe! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:06', 'category': 'food', 'sentiment': 0.79, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-26 16:40:09 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:11 | INFO | {'message': 'I just found a meme! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:11', 'category': 'humor', 'sentiment': 0.75, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-26 16:40:14 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:40:14 | INFO | Processed message: {'message': 'I just found a meme! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:11', 'category': 'humor', 'sentiment': 0.75, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-26 16:40:14 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:16 | INFO | {'message': 'I just shared recipe! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:40:16', 'category': 'food', 'sentiment': 0.97, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-26 16:40:19 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:40:19 | INFO | Processed message: {'message': 'I just shared recipe! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:40:16', 'category': 'food', 'sentiment': 0.97, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-26 16:40:19 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:21 | INFO | {'message': 'I just tried JavaScript! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:40:21', 'category': 'tech', 'sentiment': 0.7, 'keyword_mentioned': 'JavaScript', 'message_length': 38}
+2025-09-26 16:40:24 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:40:24 | INFO | Processed message: {'message': 'I just tried JavaScript! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:40:21', 'category': 'tech', 'sentiment': 0.7, 'keyword_mentioned': 'JavaScript', 'message_length': 38}
+2025-09-26 16:40:24 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:26 | INFO | {'message': 'I just saw Python! It was funny.', 'author': 'Bob', 'timestamp': '2025-09-26 16:40:26', 'category': 'tech', 'sentiment': 0.13, 'keyword_mentioned': 'Python', 'message_length': 32}
+2025-09-26 16:40:29 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:40:29 | INFO | Processed message: {'message': 'I just saw Python! It was funny.', 'author': 'Bob', 'timestamp': '2025-09-26 16:40:26', 'category': 'tech', 'sentiment': 0.13, 'keyword_mentioned': 'Python', 'message_length': 32}
+2025-09-26 16:40:29 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:31 | INFO | {'message': 'I just tried a meme! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:31', 'category': 'humor', 'sentiment': 0.19, 'keyword_mentioned': 'meme', 'message_length': 35}
+2025-09-26 16:40:34 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:40:34 | INFO | Processed message: {'message': 'I just tried a meme! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:31', 'category': 'humor', 'sentiment': 0.19, 'keyword_mentioned': 'meme', 'message_length': 35}
+2025-09-26 16:40:34 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:36 | INFO | {'message': 'I just found an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:40:36', 'category': 'other', 'sentiment': 0.35, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:40:39 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:40:39 | INFO | Processed message: {'message': 'I just found an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:40:36', 'category': 'other', 'sentiment': 0.35, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:40:39 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:41 | INFO | {'message': 'I just loved travel! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:41', 'category': 'travel', 'sentiment': 0.53, 'keyword_mentioned': 'travel', 'message_length': 35}
+2025-09-26 16:40:44 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:40:44 | INFO | Processed message: {'message': 'I just loved travel! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:41', 'category': 'travel', 'sentiment': 0.53, 'keyword_mentioned': 'travel', 'message_length': 35}
+2025-09-26 16:40:44 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:46 | INFO | {'message': 'I just saw a trick! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:46', 'category': 'other', 'sentiment': 0.68, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:40:49 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:40:49 | INFO | Processed message: {'message': 'I just saw a trick! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:46', 'category': 'other', 'sentiment': 0.68, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:40:49 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:51 | INFO | {'message': 'I just loved a story! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:51', 'category': 'other', 'sentiment': 0.9, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:40:54 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:40:54 | INFO | Processed message: {'message': 'I just loved a story! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:40:51', 'category': 'other', 'sentiment': 0.9, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:40:54 | INFO | Inserted one message into SQLite.
+2025-09-26 16:40:56 | INFO | {'message': 'I just found a meme! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:56', 'category': 'humor', 'sentiment': 0.89, 'keyword_mentioned': 'meme', 'message_length': 34}
+2025-09-26 16:40:59 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:40:59 | INFO | Processed message: {'message': 'I just found a meme! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:40:56', 'category': 'humor', 'sentiment': 0.89, 'keyword_mentioned': 'meme', 'message_length': 34}
+2025-09-26 16:40:59 | INFO | Inserted one message into SQLite.
+2025-09-26 16:41:01 | INFO | {'message': 'I just found a story! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:01', 'category': 'other', 'sentiment': 0.96, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:41:04 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:41:04 | INFO | Processed message: {'message': 'I just found a story! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:01', 'category': 'other', 'sentiment': 0.96, 'keyword_mentioned': 'other', 'message_length': 35}
+2025-09-26 16:41:04 | INFO | Inserted one message into SQLite.
+2025-09-26 16:41:06 | INFO | {'message': 'I just saw an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:06', 'category': 'other', 'sentiment': 0.66, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:41:09 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:41:09 | INFO | Processed message: {'message': 'I just saw an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:06', 'category': 'other', 'sentiment': 0.66, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:41:09 | INFO | Inserted one message into SQLite.
+2025-09-26 16:41:11 | INFO | {'message': 'I just tried a movie! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:11', 'category': 'entertainment', 'sentiment': 0.53, 'keyword_mentioned': 'movie', 'message_length': 37}
+2025-09-26 16:41:14 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=8
+2025-09-26 16:41:14 | INFO | Processed message: {'message': 'I just tried a movie! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:11', 'category': 'entertainment', 'sentiment': 0.53, 'keyword_mentioned': 'movie', 'message_length': 37}
+2025-09-26 16:41:14 | INFO | Inserted one message into SQLite.
+2025-09-26 16:41:16 | INFO | {'message': 'I just loved a meme! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:16', 'category': 'humor', 'sentiment': 0.34, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-26 16:41:19 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:41:19 | INFO | Processed message: {'message': 'I just loved a meme! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:41:16', 'category': 'humor', 'sentiment': 0.34, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-26 16:41:19 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:11 | INFO | {'message': 'I just saw a movie! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:11', 'category': 'entertainment', 'sentiment': 0.52, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-26 16:43:16 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=8
+2025-09-26 16:43:16 | INFO | Processed message: {'message': 'I just saw a movie! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:11', 'category': 'entertainment', 'sentiment': 0.52, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-26 16:43:16 | INFO | {'message': 'I just saw travel! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:43:16', 'category': 'travel', 'sentiment': 0.58, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:43:16 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:17 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:43:17 | INFO | Processed message: {'message': 'I just saw travel! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:43:16', 'category': 'travel', 'sentiment': 0.58, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:43:17 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:21 | INFO | {'message': 'I just found recipe! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:21', 'category': 'food', 'sentiment': 0.24, 'keyword_mentioned': 'recipe', 'message_length': 34}
+2025-09-26 16:43:22 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:43:22 | INFO | Processed message: {'message': 'I just found recipe! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:21', 'category': 'food', 'sentiment': 0.24, 'keyword_mentioned': 'recipe', 'message_length': 34}
+2025-09-26 16:43:22 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:27 | INFO | {'message': 'I just saw a movie! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-26 16:43:27', 'category': 'entertainment', 'sentiment': 0.63, 'keyword_mentioned': 'movie', 'message_length': 36}
+2025-09-26 16:43:27 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:43:27 | INFO | Processed message: {'message': 'I just saw a movie! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-26 16:43:27', 'category': 'entertainment', 'sentiment': 0.63, 'keyword_mentioned': 'movie', 'message_length': 36}
+2025-09-26 16:43:27 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:32 | INFO | {'message': 'I just found travel! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:32', 'category': 'travel', 'sentiment': 0.98, 'keyword_mentioned': 'travel', 'message_length': 35}
+2025-09-26 16:43:32 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:43:32 | INFO | Processed message: {'message': 'I just found travel! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:32', 'category': 'travel', 'sentiment': 0.98, 'keyword_mentioned': 'travel', 'message_length': 35}
+2025-09-26 16:43:32 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:37 | INFO | {'message': 'I just shared game! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:43:37', 'category': 'gaming', 'sentiment': 0.99, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:43:37 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:43:37 | INFO | Processed message: {'message': 'I just shared game! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:43:37', 'category': 'gaming', 'sentiment': 0.99, 'keyword_mentioned': 'game', 'message_length': 33}
+2025-09-26 16:43:37 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:42 | INFO | {'message': 'I just found JavaScript! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:42', 'category': 'tech', 'sentiment': 0.47, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
+2025-09-26 16:43:42 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:43:42 | INFO | Processed message: {'message': 'I just found JavaScript! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:42', 'category': 'tech', 'sentiment': 0.47, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
+2025-09-26 16:43:42 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:47 | INFO | {'message': 'I just shared travel! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-26 16:43:47', 'category': 'travel', 'sentiment': 0.51, 'keyword_mentioned': 'travel', 'message_length': 37}
+2025-09-26 16:43:47 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:43:47 | INFO | Processed message: {'message': 'I just shared travel! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-26 16:43:47', 'category': 'travel', 'sentiment': 0.51, 'keyword_mentioned': 'travel', 'message_length': 37}
+2025-09-26 16:43:47 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:52 | INFO | {'message': 'I just saw JavaScript! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:52', 'category': 'tech', 'sentiment': 0.93, 'keyword_mentioned': 'JavaScript', 'message_length': 37}
+2025-09-26 16:43:52 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:43:52 | INFO | Processed message: {'message': 'I just saw JavaScript! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-26 16:43:52', 'category': 'tech', 'sentiment': 0.93, 'keyword_mentioned': 'JavaScript', 'message_length': 37}
+2025-09-26 16:43:52 | INFO | Inserted one message into SQLite.
+2025-09-26 16:43:57 | INFO | {'message': 'I just found a trick! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:43:57', 'category': 'other', 'sentiment': 0.38, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:43:57 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:43:57 | INFO | Processed message: {'message': 'I just found a trick! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:43:57', 'category': 'other', 'sentiment': 0.38, 'keyword_mentioned': 'other', 'message_length': 36}
+2025-09-26 16:43:57 | INFO | Inserted one message into SQLite.
+2025-09-26 16:44:02 | INFO | {'message': 'I just saw a movie! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:44:02', 'category': 'entertainment', 'sentiment': 0.73, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-26 16:44:02 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=8
+2025-09-26 16:44:02 | INFO | Processed message: {'message': 'I just saw a movie! It was funny.', 'author': 'Alice', 'timestamp': '2025-09-26 16:44:02', 'category': 'entertainment', 'sentiment': 0.73, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-26 16:44:02 | INFO | Inserted one message into SQLite.
+2025-09-26 16:44:07 | INFO | {'message': 'I just loved JavaScript! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:44:07', 'category': 'tech', 'sentiment': 0.4, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
+2025-09-26 16:44:07 | INFO | Derived insights -> sentiment_label='neutral', exclamation_flag=True, word_count=7
+2025-09-26 16:44:07 | INFO | Processed message: {'message': 'I just loved JavaScript! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:44:07', 'category': 'tech', 'sentiment': 0.4, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
+2025-09-26 16:44:07 | INFO | Inserted one message into SQLite.
+2025-09-26 16:44:12 | INFO | {'message': 'I just saw an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:44:12', 'category': 'other', 'sentiment': 0.34, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:44:12 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:44:12 | INFO | Processed message: {'message': 'I just saw an app! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-26 16:44:12', 'category': 'other', 'sentiment': 0.34, 'keyword_mentioned': 'other', 'message_length': 34}
+2025-09-26 16:44:12 | INFO | Inserted one message into SQLite.
+2025-09-26 16:44:17 | INFO | {'message': 'I just loved recipe! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:44:17', 'category': 'food', 'sentiment': 0.14, 'keyword_mentioned': 'recipe', 'message_length': 36}
+2025-09-26 16:44:17 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=7
+2025-09-26 16:44:17 | INFO | Processed message: {'message': 'I just loved recipe! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-26 16:44:17', 'category': 'food', 'sentiment': 0.14, 'keyword_mentioned': 'recipe', 'message_length': 36}
+2025-09-26 16:44:17 | INFO | Inserted one message into SQLite.
+2025-09-26 16:44:22 | INFO | {'message': 'I just shared a story! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:44:22', 'category': 'other', 'sentiment': 0.06, 'keyword_mentioned': 'other', 'message_length': 37}
+2025-09-26 16:44:22 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8
+2025-09-26 16:44:22 | INFO | Processed message: {'message': 'I just shared a story! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-26 16:44:22', 'category': 'other', 'sentiment': 0.06, 'keyword_mentioned': 'other', 'message_length': 37}
+2025-09-26 16:44:22 | INFO | Inserted one message into SQLite.
+2025-09-26 16:44:27 | INFO | {'message': 'I just found travel! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:44:27', 'category': 'travel', 'sentiment': 1.0, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:44:27 | INFO | Derived insights -> sentiment_label='positive', exclamation_flag=True, word_count=7
+2025-09-26 16:44:27 | INFO | Processed message: {'message': 'I just found travel! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-26 16:44:27', 'category': 'travel', 'sentiment': 1.0, 'keyword_mentioned': 'travel', 'message_length': 34}
+2025-09-26 16:44:27 | INFO | Inserted one message into SQLite.
+2025-09-26 16:44:32 | INFO | Derived insights -> sentiment_label='negative', exclamation_flag=True, word_count=8

@@ -1,171 +1,217 @@
 """
 kafka_consumer_case.py
 
-Consume JSON messages from a Kafka topic and insert into SQLite in real time.
+Consume json messages from a live data file. 
+Insert the processed messages into a database.
+
+Example JSON message
+{
+    "message": "I just shared a meme! It was amazing.",
+    "author": "Charlie",
+    "timestamp": "2025-01-29 14:35:20",
+    "category": "humor",
+    "sentiment": 0.87,
+    "keyword_mentioned": "meme",
+    "message_length": 42
+}
+
+Database functions are in consumers/db_sqlite_case.py.
+Environment variables are in utils/utils_config module. 
 """
 
-# -----------------------------
-# Imports
-# -----------------------------
+#####################################
+# Import Modules
+#####################################
+
+# import from standard library
 import json
 import os
 import pathlib
 import sys
-import time
-from typing import Optional
 
+# import external modules
 from kafka import KafkaConsumer
-from kafka.errors import KafkaError, NoBrokersAvailable
 
-# local
+# import from local modules
 import utils.utils_config as config
+from utils.utils_consumer import create_kafka_consumer
 from utils.utils_logger import logger
+from utils.utils_producer import verify_services, is_topic_available
 
-# import DB functions (SQLite by default)
+# Ensure the parent directory is in sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from consumers.sqlite_consumer_case import init_db, insert_message  # noqa: E402
+from consumers.sqlite_consumer_case import init_db, insert_message
+
+#####################################
+# Function to process a single message
+# #####################################
 
 
-# -----------------------------
-# Helpers
-# -----------------------------
-def _create_consumer(
-    topic: str,
-    bootstrap_servers: str,
-    group_id: str,
-    client_id: str = "buzzline-consumer",
-) -> KafkaConsumer:
+def process_message(message: dict) -> None:
     """
-    Build a KafkaConsumer configured for real-time streaming.
-    """
-    return KafkaConsumer(
-        topic,
-        bootstrap_servers=bootstrap_servers,
-        group_id=group_id,
-        client_id=client_id,
-        enable_auto_commit=True,
-        auto_offset_reset="latest",  # start at new messages
-        value_deserializer=lambda x: json.loads(x.decode("utf-8")),
-        consumer_timeout_ms=0,       # never stop iterating
-        request_timeout_ms=30000,
-        session_timeout_ms=20000,
-        max_poll_interval_ms=300000,
-    )
+    Process and transform a single JSON message.
+    Converts message fields to appropriate data types.
 
-
-def _wait_for_broker(bootstrap_servers: str, max_wait_s: int = 30) -> None:
+    Args:
+        message (dict): The JSON message as a Python dictionary.
     """
-    Wait for Kafka broker to be reachable (simple retry loop).
-    """
-    logger.info(f"Kafka broker address: {bootstrap_servers}")
-    start = time.time()
-    while True:
-        try:
-            # A quick probe: create and close a temporary consumer
-            tmp = KafkaConsumer(bootstrap_servers=bootstrap_servers)
-            tmp.close()
-            logger.info("Kafka is ready.")
-            return
-        except NoBrokersAvailable:
-            if time.time() - start > max_wait_s:
-                raise
-            time.sleep(2)
-
-
-def _process_message(record_value: dict) -> Optional[dict]:
-    """
-    Normalize a single JSON message (dict in, dict out).
-    """
+    logger.info("Called process_message() with:")
+    logger.info(f"   {message=}")
     try:
-        return {
-            "message": record_value.get("message"),
-            "author": record_value.get("author"),
-            "timestamp": record_value.get("timestamp"),
-            "category": record_value.get("category"),
-            "sentiment": float(record_value.get("sentiment", 0.0)),
-            "keyword_mentioned": record_value.get("keyword_mentioned"),
-            "message_length": int(record_value.get("message_length", 0)),
+        processed_message = {
+            "message": message.get("message"),
+            "author": message.get("author"),
+            "timestamp": message.get("timestamp"),
+            "category": message.get("category"),
+            "sentiment": float(message.get("sentiment", 0.0)),
+            "keyword_mentioned": message.get("keyword_mentioned"),
+            "message_length": int(message.get("message_length", 0)),
         }
+        logger.info(f"Processed message: {processed_message}")
+        return processed_message
     except Exception as e:
         logger.error(f"Error processing message: {e}")
         return None
 
 
-# -----------------------------
-# Consume loop
-# -----------------------------
+#####################################
+# Consume Messages from Kafka Topic
+#####################################
+
+
 def consume_messages_from_kafka(
     topic: str,
     kafka_url: str,
     group: str,
     sql_path: pathlib.Path,
-) -> None:
+    interval_secs: int,
+):
+    """
+    Consume new messages from Kafka topic and process them.
+    Each message is expected to be JSON-formatted.
+
+    Args:
+    - topic (str): Kafka topic to consume messages from.
+    - kafka_url (str): Kafka broker address.
+    - group (str): Consumer group ID for Kafka.
+    - sql_path (pathlib.Path): Path to the SQLite database file.
+    - interval_secs (int): Interval between reads from the file.
+    """
     logger.info("Called consume_messages_from_kafka() with:")
-    logger.info(f"   topic={topic!r}")
-    logger.info(f"   group={group!r}")
-    logger.info(f"   sql_path={sql_path!r}")
+    logger.info(f"   {topic=}")
+    logger.info(f"   {kafka_url=}")
+    logger.info(f"   {group=}")
+    logger.info(f"   {sql_path=}")
+    logger.info(f"   {interval_secs=}")
 
-    # 1) Ensure DB exists and is ready for concurrent writes
-    init_db(sql_path)
-
-    # 2) Ensure broker reachable
+    logger.info("Step 1. Verify Kafka Services.")
     try:
-        _wait_for_broker(kafka_url)
+        verify_services()
     except Exception as e:
-        logger.error(f"Kafka broker not reachable at {kafka_url}: {e}")
+        logger.error(f"ERROR: Kafka services verification failed: {e}")
         sys.exit(11)
 
-    # 3) Create consumer
+    logger.info("Step 2. Create a Kafka consumer.")
     try:
-        consumer = _create_consumer(topic, kafka_url, group_id=group)
-        logger.info("Kafka consumer created successfully.")
-    except KafkaError as e:
-        logger.error(f"Could not create Kafka consumer: {e}")
-        sys.exit(12)
+        consumer: KafkaConsumer = create_kafka_consumer(
+            topic,
+            group,
+            value_deserializer_provided=lambda x: json.loads(x.decode("utf-8")),
+        )
+    except Exception as e:
+        logger.error(f"ERROR: Could not create Kafka consumer: {e}")
+        sys.exit(11)
 
-    # 4) Stream forever
-    logger.info("Starting real-time consume loop...")
+    logger.info("Step 3. Verify topic exists.")
+    if consumer is not None:
+        try:
+            is_topic_available(topic)
+            logger.info(f"Kafka topic '{topic}' is ready.")
+        except Exception as e:
+            logger.error(
+                f"ERROR: Topic '{topic}' does not exist. Please run the Kafka producer. : {e}"
+            )
+            sys.exit(13)
+
+    logger.info("Step 4. Process messages.")
+
+    if consumer is None:
+        logger.error("ERROR: Consumer is None. Exiting.")
+        sys.exit(13)
+
     try:
-        for msg in consumer:
-            processed = _process_message(msg.value)
-            if processed:
-                insert_message(processed, sql_path)
+        # consumer is a KafkaConsumer
+        # message is a kafka.consumer.fetcher.ConsumerRecord
+        # message.value is a Python dictionary
+        for message in consumer:
+            processed_message = process_message(message.value)
+            if processed_message:
+                insert_message(processed_message, sql_path)
+
+    except Exception as e:
+        logger.error(f"ERROR: Could not consume messages from Kafka: {e}")
+        raise
+
+
+#####################################
+# Define Main Function
+#####################################
+
+
+def main():
+    """
+    Main function to run the consumer process.
+
+    Reads configuration, initializes the database, and starts consumption.
+    """
+    logger.info("Starting Consumer to run continuously.")
+    logger.info("Things can fail or get interrupted, so use a try block.")
+    logger.info("Moved .env variables into a utils config module.")
+
+    logger.info("STEP 1. Read environment variables using new config functions.")
+    try:
+        topic = config.get_kafka_topic()
+        kafka_url = config.get_kafka_broker_address()
+        group_id = config.get_kafka_consumer_group_id()
+        interval_secs: int = config.get_message_interval_seconds_as_int()
+        sqlite_path: pathlib.Path = config.get_sqlite_path()
+        logger.info("SUCCESS: Read environment variables.")
+    except Exception as e:
+        logger.error(f"ERROR: Failed to read environment variables: {e}")
+        sys.exit(1)
+
+    logger.info("STEP 2. Delete any prior database file for a fresh start.")
+    if sqlite_path.exists():
+        try:
+            sqlite_path.unlink()
+            logger.info("SUCCESS: Deleted database file.")
+        except Exception as e:
+            logger.error(f"ERROR: Failed to delete DB file: {e}")
+            sys.exit(2)
+
+    logger.info("STEP 3. Initialize a new database with an empty table.")
+    try:
+        init_db(sqlite_path)
+    except Exception as e:
+        logger.error(f"ERROR: Failed to create db table: {e}")
+        sys.exit(3)
+
+    logger.info("STEP 4. Begin consuming and storing messages.")
+    try:
+        consume_messages_from_kafka(
+            topic, kafka_url, group_id, sqlite_path, interval_secs
+        )
     except KeyboardInterrupt:
         logger.warning("Consumer interrupted by user.")
     except Exception as e:
-        logger.error(f"Unexpected error in consume loop: {e}")
-        raise
+        logger.error(f"Unexpected error: {e}")
     finally:
-        try:
-            consumer.close()
-        except Exception:
-            pass
         logger.info("Consumer shutting down.")
 
 
-# -----------------------------
-# Main
-# -----------------------------
-def main() -> None:
-    logger.info("Starting Consumer to run continuously.")
-    logger.info("Reading configuration...")
-
-    try:
-        topic = config.get_kafka_topic()
-        kafka_url = config.get_kafka_broker_address() or "localhost:9092"
-        group_id = config.get_kafka_consumer_group_id()
-        sqlite_path: pathlib.Path = config.get_sqlite_path()
-        logger.info("SUCCESS: Read environment variables.")
-        logger.info(f"BUZZ_TOPIC: {topic}")
-        logger.info(f"BUZZ_CONSUMER_GROUP_ID: {group_id}")
-        logger.info(f"SQLITE_PATH: {sqlite_path}")
-    except Exception as e:
-        logger.error(f"Failed to read environment variables: {e}")
-        sys.exit(1)
-
-    # Do NOT delete the DB file here (prevents Windows file-lock issues)
-    consume_messages_from_kafka(topic, kafka_url, group_id, sqlite_path)
-
+#####################################
+# Conditional Execution
+#####################################
 
 if __name__ == "__main__":
     main()
