@@ -1,143 +1,106 @@
-# consumers/sqlite_consumer_case.py
-
 """
-SQLite helpers for streaming inserts.
+sqlite_consumer_case.py
+
 Functions:
-- init_db(db_path, recreate=False): create DB/table; WAL mode for concurrency.
-- insert_message(message, db_path): robust insert with retry on 'database is locked'.
-- delete_message(message_id, db_path): remove a row by id.
+- init_db(db_path: Path): Initialize the SQLite database and ensure the 'streamed_messages' table exists.
+- insert_message(message: dict, db_path: Path): Insert a single processed message.
+- delete_message(message_id: int, db_path: Path): Delete by id.
 """
 
-from __future__ import annotations
-
-# stdlib
-import time
+# -----------------------------
+# Imports
+# -----------------------------
 import pathlib
 import sqlite3
-from typing import Mapping, Any, Optional
+from typing import Optional
 
-# local
-import utils.utils_config as config
 from utils.utils_logger import logger
 
 
 # -----------------------------
-# Initialization
+# Connection helper (WAL + busy timeout)
 # -----------------------------
-def init_db(db_path: pathlib.Path, *, recreate: bool = False) -> None:
+def _connect(db_path: pathlib.Path) -> sqlite3.Connection:
     """
-    Initialize the SQLite database and ensure the 'streamed_messages' table exists.
+    Connect with settings that work well for real-time streaming on Windows.
+    """
+    conn = sqlite3.connect(str(db_path), timeout=5.0, isolation_level=None)  # autocommit
+    cur = conn.cursor()
+    # Make concurrent inserts reliable
+    cur.execute("PRAGMA journal_mode=WAL;")
+    cur.execute("PRAGMA synchronous=NORMAL;")
+    cur.execute("PRAGMA busy_timeout=5000;")
+    cur.execute("PRAGMA foreign_keys=ON;")
+    return conn
 
-    Args:
-        db_path: Path to the SQLite database file.
-        recreate: Drop and recreate the table (use True only for a fresh start).
+
+# -----------------------------
+# Init
+# -----------------------------
+def init_db(db_path: pathlib.Path, recreate: bool = False) -> None:
+    """
+    Ensure DB file and streamed_messages table exist.
+    Set recreate=True if you want a fresh table each run.
     """
     logger.info(f"Calling SQLite init_db() with db_path={db_path}")
     try:
         db_path.parent.mkdir(parents=True, exist_ok=True)
+        conn = _connect(db_path)
+        cur = conn.cursor()
 
-        # Open connection with sane defaults for streaming
-        with sqlite3.connect(db_path) as conn:
-            # Improve concurrency: WAL allows readers while we write
-            conn.execute("PRAGMA journal_mode=WAL;")
-            # Good durability + performance tradeoff
-            conn.execute("PRAGMA synchronous=NORMAL;")
-            # Extra safety if a connection races us
-            conn.execute("PRAGMA busy_timeout=5000;")
+        if recreate:
+            cur.execute("DROP TABLE IF EXISTS streamed_messages;")
 
-            cur = conn.cursor()
-            if recreate:
-                cur.execute("DROP TABLE IF EXISTS streamed_messages;")
-
-            cur.execute(
-                """
-                CREATE TABLE IF NOT EXISTS streamed_messages (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    message TEXT,
-                    author TEXT,
-                    timestamp TEXT,
-                    category TEXT,
-                    sentiment REAL,
-                    keyword_mentioned TEXT,
-                    message_length INTEGER
-                )
-                """
-            )
-            conn.commit()
-
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS streamed_messages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                message TEXT,
+                author TEXT,
+                timestamp TEXT,
+                category TEXT,
+                sentiment REAL,
+                keyword_mentioned TEXT,
+                message_length INTEGER
+            );
+            """
+        )
         logger.info(f"SUCCESS: Database initialized and table ready at {db_path}.")
+        conn.close()
     except Exception as e:
         logger.error(f"ERROR: Failed to initialize SQLite at {db_path}: {e}")
-        raise
 
 
 # -----------------------------
 # Insert
 # -----------------------------
-def insert_message(
-    message: Mapping[str, Any],
-    db_path: pathlib.Path,
-    *,
-    max_retries: int = 6,
-    base_sleep: float = 0.05,
-) -> None:
+def insert_message(message: dict, db_path: pathlib.Path) -> None:
     """
-    Insert a single processed message into the SQLite database with retry.
-
-    Args:
-        message: Processed message dict.
-        db_path: SQLite file path.
-        max_retries: Retries on 'database is locked'.
-        base_sleep: Initial backoff in seconds.
+    Insert one processed message.
     """
-    logger.info("Calling SQLite insert_message()")
-    logger.info(f"message={message}")
-    logger.info(f"db_path={db_path}")
-
-    # Defensive casting in case upstream missed it
-    payload = (
-        str(message.get("message")),
-        str(message.get("author")),
-        str(message.get("timestamp")),
-        str(message.get("category")),
-        float(message.get("sentiment", 0.0)),
-        str(message.get("keyword_mentioned")),
-        int(message.get("message_length", 0)),
-    )
-
-    attempt = 0
-    while True:
-        try:
-            with sqlite3.connect(db_path, timeout=5.0) as conn:
-                conn.execute("PRAGMA busy_timeout=5000;")
-                conn.execute(
-                    """
-                    INSERT INTO streamed_messages (
-                        message, author, timestamp, category, sentiment, keyword_mentioned, message_length
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?)
-                    """,
-                    payload,
-                )
-                conn.commit()
-            logger.info("Inserted one message into the database.")
-            return
-
-        except sqlite3.OperationalError as e:
-            # Handle transient locking during real-time streaming
-            msg = str(e).lower()
-            if ("locked" in msg or "busy" in msg) and attempt < max_retries:
-                sleep_for = base_sleep * (2 ** attempt)
-                logger.warning(
-                    f"SQLite locked/busy (attempt {attempt+1}/{max_retries}); retrying in {sleep_for:.3f}s..."
-                )
-                time.sleep(sleep_for)
-                attempt += 1
-                continue
-            logger.error(f"ERROR: SQLite insert failed (no more retries): {e}")
-            raise
-        except Exception as e:
-            logger.error(f"ERROR: Failed to insert message: {e}")
-            raise
+    try:
+        conn = _connect(db_path)
+        cur = conn.cursor()
+        cur.execute(
+            """
+            INSERT INTO streamed_messages
+                (message, author, timestamp, category, sentiment, keyword_mentioned, message_length)
+            VALUES (?, ?, ?, ?, ?, ?, ?);
+            """,
+            (
+                message.get("message"),
+                message.get("author"),
+                message.get("timestamp"),
+                message.get("category"),
+                float(message.get("sentiment", 0.0)),
+                message.get("keyword_mentioned"),
+                int(message.get("message_length", 0)),
+            ),
+        )
+        logger.info("Inserted one message into SQLite.")
+        conn.close()
+    except Exception as e:
+        logger.error(f"ERROR: Failed to insert message into SQLite: {e}")
 
 
 # -----------------------------
@@ -148,42 +111,48 @@ def delete_message(message_id: int, db_path: pathlib.Path) -> None:
     Delete a message by id.
     """
     try:
-        with sqlite3.connect(db_path, timeout=5.0) as conn:
-            conn.execute("PRAGMA busy_timeout=5000;")
-            conn.execute("DELETE FROM streamed_messages WHERE id = ?", (int(message_id),))
-            conn.commit()
-        logger.info(f"Deleted message id={message_id}")
+        conn = _connect(db_path)
+        cur = conn.cursor()
+        cur.execute("DELETE FROM streamed_messages WHERE id = ?;", (message_id,))
+        logger.info(f"Deleted message with id {message_id} from SQLite.")
+        conn.close()
     except Exception as e:
-        logger.error(f"ERROR: Failed to delete message id={message_id}: {e}")
-        raise
+        logger.error(f"ERROR: Failed to delete message from SQLite: {e}")
 
 
 # -----------------------------
-# Self-test (optional)
+# Local test
 # -----------------------------
 def main() -> None:
-    logger.info("Starting sqlite_consumer_case self-test.")
-    # Use a separate test DB next to your main DB path
-    try:
-        base_dir: pathlib.Path = config.get_sqlite_path().parent
-    except Exception:
-        # Fallback if config function differs
-        base_dir = pathlib.Path("data")
-    test_db = base_dir / "test_buzz.sqlite"
-
-    init_db(test_db, recreate=True)
+    logger.info("Starting SQLite db testing.")
+    # simple local test path
+    test_path = pathlib.Path("data/test_buzz.sqlite")
+    init_db(test_path, recreate=True)
 
     sample = {
-        "message": "I just shared a meme! It was amazing.",
-        "author": "Charlie",
-        "timestamp": "2025-01-29 14:35:20",
-        "category": "humor",
-        "sentiment": 0.87,
-        "keyword_mentioned": "meme",
-        "message_length": 42,
+        "message": "Hello, SQLite!",
+        "author": "Tester",
+        "timestamp": "2025-01-01 00:00:00",
+        "category": "test",
+        "sentiment": 0.5,
+        "keyword_mentioned": "hello",
+        "message_length": 14,
     }
-    insert_message(sample, test_db)
-    logger.info("Finished sqlite_consumer_case self-test.")
+    insert_message(sample, test_path)
+
+    # Confirm one row exists
+    try:
+        conn = _connect(test_path)
+        cur = conn.cursor()
+        row = cur.execute(
+            "SELECT id, message FROM streamed_messages ORDER BY id DESC LIMIT 1;"
+        ).fetchone()
+        logger.info(f"Latest row: {row}")
+        conn.close()
+    except Exception as e:
+        logger.error(f"Verification SELECT failed: {e}")
+
+    logger.info("Finished SQLite db testing.")
 
 
 if __name__ == "__main__":

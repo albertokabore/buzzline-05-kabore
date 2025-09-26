@@ -1,81 +1,102 @@
 """
 kafka_consumer_case.py
 
-Consume json messages from a Kafka topic in real time.
-Insert the processed messages into a database (SQLite).
-
-Relies on:
-- utils.utils_config for env
-- utils.utils_consumer.create_kafka_consumer
-- consumers.sqlite_consumer_case.init_db, insert_message
+Consume JSON messages from a Kafka topic and insert into SQLite in real time.
 """
 
-# --------------------------
+# -----------------------------
 # Imports
-# --------------------------
+# -----------------------------
 import json
 import os
 import pathlib
 import sys
+import time
 from typing import Optional
 
 from kafka import KafkaConsumer
+from kafka.errors import KafkaError, NoBrokersAvailable
 
+# local
 import utils.utils_config as config
-from utils.utils_consumer import create_kafka_consumer
 from utils.utils_logger import logger
 
-# verify_services may exist in your utils; if not, we gracefully skip it
-try:
-    from utils.utils_producer import verify_services  # type: ignore
-except Exception:  # pragma: no cover
-    verify_services = None  # type: ignore
-
-# Ensure the parent directory is in sys.path (for local package imports)
+# import DB functions (SQLite by default)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from consumers.sqlite_consumer_case import init_db, insert_message  # noqa: E402
 
 
-# --------------------------
-# Message processor
-# --------------------------
-def process_message(message: dict) -> Optional[dict]:
-    """Validate/transform one message dict."""
+# -----------------------------
+# Helpers
+# -----------------------------
+def _create_consumer(
+    topic: str,
+    bootstrap_servers: str,
+    group_id: str,
+    client_id: str = "buzzline-consumer",
+) -> KafkaConsumer:
+    """
+    Build a KafkaConsumer configured for real-time streaming.
+    """
+    return KafkaConsumer(
+        topic,
+        bootstrap_servers=bootstrap_servers,
+        group_id=group_id,
+        client_id=client_id,
+        enable_auto_commit=True,
+        auto_offset_reset="latest",  # start at new messages
+        value_deserializer=lambda x: json.loads(x.decode("utf-8")),
+        consumer_timeout_ms=0,       # never stop iterating
+        request_timeout_ms=30000,
+        session_timeout_ms=20000,
+        max_poll_interval_ms=300000,
+    )
+
+
+def _wait_for_broker(bootstrap_servers: str, max_wait_s: int = 30) -> None:
+    """
+    Wait for Kafka broker to be reachable (simple retry loop).
+    """
+    logger.info(f"Kafka broker address: {bootstrap_servers}")
+    start = time.time()
+    while True:
+        try:
+            # A quick probe: create and close a temporary consumer
+            tmp = KafkaConsumer(bootstrap_servers=bootstrap_servers)
+            tmp.close()
+            logger.info("Kafka is ready.")
+            return
+        except NoBrokersAvailable:
+            if time.time() - start > max_wait_s:
+                raise
+            time.sleep(2)
+
+
+def _process_message(record_value: dict) -> Optional[dict]:
+    """
+    Normalize a single JSON message (dict in, dict out).
+    """
     try:
-        processed = {
-            "message": message.get("message"),
-            "author": message.get("author"),
-            "timestamp": message.get("timestamp"),
-            "category": message.get("category"),
-            "sentiment": float(message.get("sentiment", 0.0)),
-            "keyword_mentioned": message.get("keyword_mentioned"),
-            "message_length": int(message.get("message_length", 0)),
+        return {
+            "message": record_value.get("message"),
+            "author": record_value.get("author"),
+            "timestamp": record_value.get("timestamp"),
+            "category": record_value.get("category"),
+            "sentiment": float(record_value.get("sentiment", 0.0)),
+            "keyword_mentioned": record_value.get("keyword_mentioned"),
+            "message_length": int(record_value.get("message_length", 0)),
         }
-        logger.info(f"Processed message: {processed}")
-        return processed
     except Exception as e:
         logger.error(f"Error processing message: {e}")
         return None
 
 
-# --------------------------
-# Helpers
-# --------------------------
-def _topic_exists(consumer: KafkaConsumer, topic: str) -> bool:
-    """Best-effort topic existence check; returns True if callable fails."""
-    try:
-        topics = consumer.topics()
-        return (topic in topics) if isinstance(topics, set) else True
-    except Exception:
-        # If the broker disallows metadata or the call fails, don't block streaming.
-        return True
-
-
-# --------------------------
-# Main consume loop
-# --------------------------
+# -----------------------------
+# Consume loop
+# -----------------------------
 def consume_messages_from_kafka(
     topic: str,
+    kafka_url: str,
     group: str,
     sql_path: pathlib.Path,
 ) -> None:
@@ -84,43 +105,35 @@ def consume_messages_from_kafka(
     logger.info(f"   group={group!r}")
     logger.info(f"   sql_path={sql_path!r}")
 
-    # 1) Optional: verify local services (if function exists)
-    if verify_services:
-        try:
-            verify_services()
-        except Exception as e:
-            logger.warning(f"verify_services() failed or unavailable: {e}")
+    # 1) Ensure DB exists and is ready for concurrent writes
+    init_db(sql_path)
 
-    # 2) Build consumer (use your utils.create_kafka_consumer signature)
+    # 2) Ensure broker reachable
     try:
-        consumer: KafkaConsumer = create_kafka_consumer(
-            topic,
-            group,
-            value_deserializer_provided=lambda x: json.loads(x.decode("utf-8")),
-        )
-        logger.info("KafkaConsumer created.")
+        _wait_for_broker(kafka_url)
     except Exception as e:
-        logger.error(f"ERROR: Could not create Kafka consumer: {e}")
+        logger.error(f"Kafka broker not reachable at {kafka_url}: {e}")
         sys.exit(11)
 
-    # 3) Best-effort topic check
-    if not _topic_exists(consumer, topic):
-        logger.error(
-            f"ERROR: Kafka topic '{topic}' does not exist or metadata unavailable."
-        )
-        sys.exit(13)
+    # 3) Create consumer
+    try:
+        consumer = _create_consumer(topic, kafka_url, group_id=group)
+        logger.info("Kafka consumer created successfully.")
+    except KafkaError as e:
+        logger.error(f"Could not create Kafka consumer: {e}")
+        sys.exit(12)
 
+    # 4) Stream forever
     logger.info("Starting real-time consume loop...")
     try:
-        for record in consumer:
-            # record.value is already a dict because of the value_deserializer
-            processed = process_message(record.value)
+        for msg in consumer:
+            processed = _process_message(msg.value)
             if processed:
                 insert_message(processed, sql_path)
     except KeyboardInterrupt:
         logger.warning("Consumer interrupted by user.")
     except Exception as e:
-        logger.error(f"ERROR: Could not consume messages from Kafka: {e}")
+        logger.error(f"Unexpected error in consume loop: {e}")
         raise
     finally:
         try:
@@ -130,17 +143,16 @@ def consume_messages_from_kafka(
         logger.info("Consumer shutting down.")
 
 
-# --------------------------
-# Script entry
-# --------------------------
+# -----------------------------
+# Main
+# -----------------------------
 def main() -> None:
     logger.info("Starting Consumer to run continuously.")
-    logger.info("Things can fail or get interrupted, so use a try block.")
-    logger.info("Moved .env variables into a utils config module.")
+    logger.info("Reading configuration...")
 
-    # Read env
     try:
         topic = config.get_kafka_topic()
+        kafka_url = config.get_kafka_broker_address() or "localhost:9092"
         group_id = config.get_kafka_consumer_group_id()
         sqlite_path: pathlib.Path = config.get_sqlite_path()
         logger.info("SUCCESS: Read environment variables.")
@@ -148,33 +160,11 @@ def main() -> None:
         logger.info(f"BUZZ_CONSUMER_GROUP_ID: {group_id}")
         logger.info(f"SQLITE_PATH: {sqlite_path}")
     except Exception as e:
-        logger.error(f"ERROR: Failed to read environment variables: {e}")
+        logger.error(f"Failed to read environment variables: {e}")
         sys.exit(1)
 
-    # Fresh-start handling (optional)
-    fresh = os.getenv("FRESH_START_DB", "false").strip().lower() in ("1", "true", "yes")
-    if fresh and sqlite_path.exists():
-        try:
-            sqlite_path.unlink()
-            logger.info(f"Deleted prior database at {sqlite_path}")
-        except PermissionError as e:
-            # Don't exit—this is exactly the Windows lock you hit. Reuse the DB instead.
-            logger.warning(
-                f"DB file is in use; continuing without delete: {sqlite_path} ({e})"
-            )
-        except Exception as e:
-            logger.warning(f"Could not delete DB; continuing: {e}")
-
-    # Initialize the DB (should NOT drop the table unless your init does so explicitly)
-    try:
-        init_db(sqlite_path)
-        logger.info(f"Database initialized/ready at {sqlite_path}.")
-    except Exception as e:
-        logger.error(f"ERROR: Failed to initialize database: {e}")
-        sys.exit(3)
-
-    # Start streaming
-    consume_messages_from_kafka(topic, group_id, sqlite_path)
+    # Do NOT delete the DB file here (prevents Windows file-lock issues)
+    consume_messages_from_kafka(topic, kafka_url, group_id, sqlite_path)
 
 
 if __name__ == "__main__":
