@@ -1,54 +1,37 @@
-"""
-file_consumer_case.py
+# consumers/file_consumer_case.py
 
-Consume json messages from a live data file. 
+"""
+Consume json messages from a live data file.
 Insert the processed messages into a database.
-
-Example JSON message
-{
-    "message": "I just shared a meme! It was amazing.",
-    "author": "Charlie",
-    "timestamp": "2025-01-29 14:35:20",
-    "category": "humor",
-    "sentiment": 0.87,
-    "keyword_mentioned": "meme",
-    "message_length": 42
-}
-
-Database functions are in consumers/db_sqlite_case.py.
-Environment variables are in utils/utils_config module. 
 """
 
-#####################################
-# Import Modules
-#####################################
-
-# import from standard library
+# -----------------------------
+# Imports
+# -----------------------------
+import os
 import json
 import pathlib
 import sys
 import time
+from typing import Optional
 
-# import from local modules
 import utils.utils_config as config
 from utils.utils_logger import logger
 from .sqlite_consumer_case import init_db, insert_message
 
-#####################################
-# Function to process a single message
-# #####################################
 
-
-def process_message(message: str) -> None:
+# -----------------------------
+# Message processing
+# -----------------------------
+def process_message(message: dict) -> Optional[dict]:
     """
-    Process and transform a single JSON message.
-    Converts message fields to appropriate data types.
+    Process and transform a single JSON message (dict in, dict out).
 
     Args:
-        message (str): The JSON message as a string.
+        message (dict): The JSON message as a Python dictionary.
     """
     try:
-        processed_message = {
+        processed = {
             "message": message.get("message"),
             "author": message.get("author"),
             "timestamp": message.get("timestamp"),
@@ -57,104 +40,109 @@ def process_message(message: str) -> None:
             "keyword_mentioned": message.get("keyword_mentioned"),
             "message_length": int(message.get("message_length", 0)),
         }
-        logger.info(f"Processed message: {processed_message}")
-        return processed_message
+        logger.info(f"Processed message: {processed}")
+        return processed
     except Exception as e:
         logger.error(f"Error processing message: {e}")
         return None
 
 
-#####################################
-# Consume Messages from Live Data File
-#####################################
-
-
-def consume_messages_from_file(live_data_path, sql_path, interval_secs, last_position):
+# -----------------------------
+# File tailer (real-time)
+# -----------------------------
+def consume_messages_from_file(
+    live_data_path: pathlib.Path,
+    sql_path: pathlib.Path,
+    interval_secs: int,
+    last_position: int = 0,
+) -> None:
     """
-    Consume new messages from a file and process them.
-    Each message is expected to be JSON-formatted.
+    Tail a JSONL file in real time and insert each parsed message into SQLite.
 
-    Args:
-    - live_data_path (pathlib.Path): Path to the live data file.
-    - sql_path (pathlib.Path): Path to the SQLite database file.
-    - interval_secs (int): Interval in seconds to check for new messages.
-    - last_position (int): Last read position in the file.
+    - Keeps reading as new lines are appended.
+    - If the file is truncated or recreated, it resets to the start.
     """
     logger.info("Called consume_messages_from_file() with:")
-    logger.info(f"   {live_data_path=}")
-    logger.info(f"   {sql_path=}")
-    logger.info(f"   {interval_secs=}")
-    logger.info(f"   {last_position=}")
+    logger.info(f"   live_data_path={live_data_path}")
+    logger.info(f"   sql_path={sql_path}")
+    logger.info(f"   interval_secs={interval_secs}")
+    logger.info(f"   last_position={last_position}")
 
-    logger.info("1. Initialize the database.")
-    init_db(sql_path)
+    # Do NOT init the DB here; main() already does that.
 
-    logger.info("2. Set the last position to 0 to start at the beginning of the file.")
-    last_position = 0
+    pos = int(last_position)
 
     while True:
         try:
-            logger.info(f"3. Read from live data file at position {last_position}.")
-            with open(live_data_path, "r") as file:
-                # Move to the last read position
-                file.seek(last_position)
-                for line in file:
-                    # If we strip whitespace and there is content
-                    if line.strip():
+            if not live_data_path.exists():
+                logger.warning(f"Live data file not found at {live_data_path}. Retrying...")
+                time.sleep(interval_secs)
+                continue
 
-                        # Use json.loads to parse the stripped line
-                        message = json.loads(line.strip())
+            with live_data_path.open("r", encoding="utf-8") as f:
+                # Handle truncation/recreation
+                f.seek(0, os.SEEK_END)
+                filesize = f.tell()
+                if pos > filesize:
+                    logger.info("Detected file truncation/recreate. Resetting position to 0.")
+                    pos = 0
 
-                        # Call our process_message function
-                        processed_message = process_message(message)
+                # Seek to last known good position
+                f.seek(pos)
 
-                        # If we have a processed message, insert it into the database
-                        if processed_message:
-                            insert_message(processed_message, sql_path)
+                while True:
+                    line = f.readline()
+                    if not line:
+                        # No new data right now; remember where we are and break to sleep
+                        pos = f.tell()
+                        break
 
-                # Update the last position that's been read to the current file position
-                last_position = file.tell()
+                    line = line.strip()
+                    if not line:
+                        continue
 
-                # Return the last position to be used in the next iteration
-                return last_position
+                    try:
+                        message = json.loads(line)
+                    except json.JSONDecodeError as e:
+                        logger.warning(f"Skipping bad JSON line: {e} | line={line!r}")
+                        continue
 
-        except FileNotFoundError:
-            logger.error(f"ERROR: Live data file not found at {live_data_path}.")
-            sys.exit(10)
+                    processed = process_message(message)
+                    if processed:
+                        insert_message(processed, sql_path)
+
         except Exception as e:
-            logger.error(f"ERROR: Error reading from live data file: {e}")
-            sys.exit(11)
-
-        time.sleep(interval_secs)
-
-
-#####################################
-# Define Main Function
-#####################################
+            logger.error(f"ERROR while tailing {live_data_path}: {e}")
+            # Don’t exit; keep trying so it stays real-time
+        finally:
+            time.sleep(interval_secs)
 
 
+# -----------------------------
+# Main
+# -----------------------------
 def main():
     """
     Main function to run the consumer process.
-
-    Reads configuration, initializes the database, and starts consumption.
-
     """
     logger.info("Starting Consumer to run continuously.")
     logger.info("Things can fail or get interrupted, so use a try block.")
     logger.info("Moved .env variables into a utils config module.")
 
-    logger.info("STEP 1. Read environment variables using new config functions.")
+    # STEP 1. Read env
     try:
         interval_secs: int = config.get_message_interval_seconds_as_int()
         live_data_path: pathlib.Path = config.get_live_data_path()
         sqlite_path: pathlib.Path = config.get_sqlite_path()
         logger.info("SUCCESS: Read environment variables.")
+        logger.info(f"LIVE_DATA_PATH: {live_data_path}")
+        logger.info(f"SQLITE_PATH: {sqlite_path}")
+        logger.info(f"MESSAGE_INTERVAL_SECONDS: {interval_secs}")
     except Exception as e:
         logger.error(f"ERROR: Failed to read environment variables: {e}")
         sys.exit(1)
 
-    logger.info("STEP 2. Delete any prior database file for a fresh start.")
+    # STEP 2. Fresh DB
     if sqlite_path.exists():
         try:
             sqlite_path.unlink()
@@ -163,14 +151,14 @@ def main():
             logger.error(f"ERROR: Failed to delete DB file: {e}")
             sys.exit(2)
 
-    logger.info("STEP 3. Initialize a new database with an empty table.")
+    # STEP 3. Init DB
     try:
         init_db(sqlite_path)
     except Exception as e:
         logger.error(f"ERROR: Failed to create db table: {e}")
         sys.exit(3)
 
-    logger.info("STEP 4. Begin consuming and storing messages.")
+    # STEP 4. Tail the file forever
     try:
         consume_messages_from_file(live_data_path, sqlite_path, interval_secs, 0)
     except KeyboardInterrupt:
@@ -180,10 +168,6 @@ def main():
     finally:
         logger.info("TRY/FINALLY: Consumer shutting down.")
 
-
-#####################################
-# Conditional Execution
-#####################################
 
 if __name__ == "__main__":
     main()

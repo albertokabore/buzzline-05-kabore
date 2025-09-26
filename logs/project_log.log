@@ -1,66 +1,56 @@
-2025-09-23 15:59:13 | INFO | {'message': 'I just saw JavaScript! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-23 15:59:13', 'category': 'tech', 'sentiment': 0.52, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
-2025-09-23 15:59:18 | INFO | {'message': 'I just tried game! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-23 15:59:18', 'category': 'gaming', 'sentiment': 0.0, 'keyword_mentioned': 'game', 'message_length': 35}
-2025-09-23 15:59:23 | INFO | {'message': 'I just tried Python! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-23 15:59:23', 'category': 'tech', 'sentiment': 0.6, 'keyword_mentioned': 'Python', 'message_length': 36}
-2025-09-23 15:59:28 | INFO | {'message': 'I just saw a trick! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-23 15:59:28', 'category': 'other', 'sentiment': 0.58, 'keyword_mentioned': 'other', 'message_length': 33}
-2025-09-23 15:59:33 | INFO | {'message': 'I just tried a meme! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-23 15:59:33', 'category': 'humor', 'sentiment': 0.58, 'keyword_mentioned': 'meme', 'message_length': 36}
-2025-09-23 15:59:38 | INFO | {'message': 'I just shared Python! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-23 15:59:38', 'category': 'tech', 'sentiment': 0.57, 'keyword_mentioned': 'Python', 'message_length': 35}
-2025-09-23 15:59:43 | INFO | {'message': 'I just saw a meme! It was exciting.', 'author': 'Charlie', 'timestamp': '2025-09-23 15:59:43', 'category': 'humor', 'sentiment': 0.91, 'keyword_mentioned': 'meme', 'message_length': 35}
-2025-09-23 15:59:48 | INFO | {'message': 'I just shared a movie! It was funny.', 'author': 'Bob', 'timestamp': '2025-09-23 15:59:48', 'category': 'entertainment', 'sentiment': 0.01, 'keyword_mentioned': 'movie', 'message_length': 36}
-2025-09-23 15:59:53 | INFO | {'message': 'I just loved a trick! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-23 15:59:53', 'category': 'other', 'sentiment': 0.7, 'keyword_mentioned': 'other', 'message_length': 38}
-2025-09-23 15:59:58 | INFO | {'message': 'I just saw a trick! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-23 15:59:58', 'category': 'other', 'sentiment': 0.95, 'keyword_mentioned': 'other', 'message_length': 35}
-2025-09-23 16:00:03 | INFO | {'message': 'I just shared a trick! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:00:03', 'category': 'other', 'sentiment': 0.41, 'keyword_mentioned': 'other', 'message_length': 38}
-2025-09-23 16:00:08 | INFO | {'message': 'I just shared an app! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:00:08', 'category': 'other', 'sentiment': 0.48, 'keyword_mentioned': 'other', 'message_length': 36}
-2025-09-23 16:00:13 | INFO | {'message': 'I just found JavaScript! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-23 16:00:13', 'category': 'tech', 'sentiment': 0.41, 'keyword_mentioned': 'JavaScript', 'message_length': 41}
-2025-09-23 16:00:18 | INFO | {'message': 'I just shared JavaScript! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:00:18', 'category': 'tech', 'sentiment': 0.97, 'keyword_mentioned': 'JavaScript', 'message_length': 39}
-2025-09-23 16:00:23 | INFO | {'message': 'I just loved recipe! It was funny.', 'author': 'Bob', 'timestamp': '2025-09-23 16:00:23', 'category': 'food', 'sentiment': 0.35, 'keyword_mentioned': 'recipe', 'message_length': 34}
-2025-09-23 16:00:28 | INFO | {'message': 'I just saw Python! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-23 16:00:28', 'category': 'tech', 'sentiment': 0.25, 'keyword_mentioned': 'Python', 'message_length': 33}
-2025-09-23 16:00:33 | INFO | {'message': 'I just shared an app! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-23 16:00:33', 'category': 'other', 'sentiment': 0.14, 'keyword_mentioned': 'other', 'message_length': 36}
-2025-09-23 16:00:38 | INFO | {'message': 'I just shared JavaScript! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-23 16:00:38', 'category': 'tech', 'sentiment': 0.41, 'keyword_mentioned': 'JavaScript', 'message_length': 41}
-2025-09-23 16:00:43 | INFO | {'message': 'I just loved a meme! It was weird.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:00:43', 'category': 'humor', 'sentiment': 0.74, 'keyword_mentioned': 'meme', 'message_length': 34}
-2025-09-23 16:00:48 | INFO | {'message': 'I just shared travel! It was boring.', 'author': 'Bob', 'timestamp': '2025-09-23 16:00:48', 'category': 'travel', 'sentiment': 0.24, 'keyword_mentioned': 'travel', 'message_length': 36}
-2025-09-23 16:00:53 | INFO | {'message': 'I just tried recipe! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-23 16:00:53', 'category': 'food', 'sentiment': 0.5, 'keyword_mentioned': 'recipe', 'message_length': 37}
-2025-09-23 16:00:58 | INFO | {'message': 'I just saw a movie! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:00:58', 'category': 'entertainment', 'sentiment': 0.75, 'keyword_mentioned': 'movie', 'message_length': 35}
-2025-09-23 16:01:03 | INFO | {'message': 'I just tried a meme! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-23 16:01:03', 'category': 'humor', 'sentiment': 0.69, 'keyword_mentioned': 'meme', 'message_length': 36}
-2025-09-23 16:01:08 | INFO | Logging to file: logs/project_log.log
-2025-09-23 16:01:08 | INFO | Log sanitization enabled, personal info removed
-2025-09-23 16:01:08 | INFO | {'message': 'I just found a trick! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-23 16:01:08', 'category': 'other', 'sentiment': 0.74, 'keyword_mentioned': 'other', 'message_length': 35}
-2025-09-23 16:01:13 | INFO | {'message': 'I just tried a trick! It was exciting.', 'author': 'Alice', 'timestamp': '2025-09-23 16:01:13', 'category': 'other', 'sentiment': 0.74, 'keyword_mentioned': 'other', 'message_length': 38}
-2025-09-23 16:01:18 | INFO | {'message': 'I just found a story! It was boring.', 'author': 'Alice', 'timestamp': '2025-09-23 16:01:18', 'category': 'other', 'sentiment': 0.98, 'keyword_mentioned': 'other', 'message_length': 36}
-2025-09-23 16:01:23 | INFO | {'message': 'I just saw recipe! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-23 16:01:23', 'category': 'food', 'sentiment': 0.77, 'keyword_mentioned': 'recipe', 'message_length': 33}
-2025-09-23 16:01:28 | INFO | {'message': 'I just saw game! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:01:28', 'category': 'gaming', 'sentiment': 0.13, 'keyword_mentioned': 'game', 'message_length': 30}
-2025-09-23 16:01:33 | INFO | {'message': 'I just found game! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-23 16:01:33', 'category': 'gaming', 'sentiment': 0.77, 'keyword_mentioned': 'game', 'message_length': 32}
-2025-09-23 16:25:36 | INFO | Logging to file: logs/project_log.log
-2025-09-23 16:25:36 | INFO | Log sanitization enabled, personal info removed
-2025-09-23 16:26:12 | INFO | Logging to file: logs/project_log.log
-2025-09-23 16:26:12 | INFO | Log sanitization enabled, personal info removed
-2025-09-23 16:27:46 | INFO | Logging to file: logs/project_log.log
-2025-09-23 16:27:46 | INFO | Log sanitization enabled, personal info removed
-2025-09-23 16:27:46 | INFO | Starting Producer to run continuously.
-2025-09-23 16:27:46 | INFO | Use Ctrl+C to stop.
-2025-09-23 16:27:46 | INFO | MESSAGE_INTERVAL_SECONDS: 5
-2025-09-23 16:27:46 | INFO | BUZZ_TOPIC: buzzline
-2025-09-23 16:27:46 | INFO | KAFKA_BROKER_ADDRESS: 127.0.0.1:9092
-2025-09-23 16:27:46 | INFO | BASE_DATA_DIR: C:/Users/USER/buzzline-05-kabore/data
-2025-09-23 16:27:46 | INFO | LIVE_DATA_PATH: C:/Users/USER/buzzline-05-kabore/data/project_live.json
-2025-09-23 16:27:46 | INFO | BASE_DATA_DIR: C:/Users/USER/buzzline-05-kabore/data
-2025-09-23 16:27:46 | INFO | SQLITE_PATH: C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
-2025-09-23 16:27:46 | INFO | Deleted existing live data file.
-2025-09-23 16:27:46 | INFO | Kafka broker address: localhost:9092
-2025-09-23 16:27:48 | ERROR | Error checking Kafka: NoBrokersAvailable
-2025-09-23 16:27:48 | WARNING | Kafka broker not available; continuing without Kafka.
-2025-09-23 16:27:48 | INFO | Kafka disabled for this run.
-2025-09-23 16:27:48 | INFO | {'message': 'I just loved JavaScript! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:27:48', 'category': 'tech', 'sentiment': 0.97, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
-2025-09-23 16:27:53 | INFO | {'message': 'I just loved JavaScript! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:27:53', 'category': 'tech', 'sentiment': 0.99, 'keyword_mentioned': 'JavaScript', 'message_length': 40}
-2025-09-23 16:27:58 | INFO | {'message': 'I just shared a story! It was weird.', 'author': 'Alice', 'timestamp': '2025-09-23 16:27:58', 'category': 'other', 'sentiment': 0.63, 'keyword_mentioned': 'other', 'message_length': 36}
-2025-09-23 16:28:03 | INFO | {'message': 'I just shared a story! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-23 16:28:03', 'category': 'other', 'sentiment': 0.56, 'keyword_mentioned': 'other', 'message_length': 36}
-2025-09-23 16:28:08 | INFO | {'message': 'I just found a meme! It was exciting.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:28:08', 'category': 'humor', 'sentiment': 0.27, 'keyword_mentioned': 'meme', 'message_length': 37}
-2025-09-23 16:28:13 | INFO | {'message': 'I just found recipe! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:28:13', 'category': 'food', 'sentiment': 0.88, 'keyword_mentioned': 'recipe', 'message_length': 34}
-2025-09-23 16:28:18 | INFO | {'message': 'I just shared travel! It was weird.', 'author': 'Eve', 'timestamp': '2025-09-23 16:28:18', 'category': 'travel', 'sentiment': 0.61, 'keyword_mentioned': 'travel', 'message_length': 35}
-2025-09-23 16:28:23 | INFO | {'message': 'I just loved a movie! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-23 16:28:23', 'category': 'entertainment', 'sentiment': 0.21, 'keyword_mentioned': 'movie', 'message_length': 35}
-2025-09-23 16:28:28 | INFO | {'message': 'I just saw a story! It was boring.', 'author': 'Eve', 'timestamp': '2025-09-23 16:28:28', 'category': 'other', 'sentiment': 0.2, 'keyword_mentioned': 'other', 'message_length': 34}
-2025-09-23 16:28:33 | INFO | {'message': 'I just shared Python! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-23 16:28:33', 'category': 'tech', 'sentiment': 0.27, 'keyword_mentioned': 'Python', 'message_length': 37}
-2025-09-23 16:28:38 | INFO | {'message': 'I just shared a meme! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-23 16:28:38', 'category': 'humor', 'sentiment': 0.23, 'keyword_mentioned': 'meme', 'message_length': 37}
-2025-09-23 16:28:43 | INFO | {'message': 'I just loved a trick! It was boring.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:28:43', 'category': 'other', 'sentiment': 0.34, 'keyword_mentioned': 'other', 'message_length': 36}
-2025-09-23 16:28:48 | INFO | {'message': 'I just tried a meme! It was amazing.', 'author': 'Charlie', 'timestamp': '2025-09-23 16:28:48', 'category': 'humor', 'sentiment': 0.0, 'keyword_mentioned': 'meme', 'message_length': 36}
-2025-09-23 16:28:53 | INFO | {'message': 'I just loved a story! It was weird.', 'author': 'Bob', 'timestamp': '2025-09-23 16:28:53', 'category': 'other', 'sentiment': 0.37, 'keyword_mentioned': 'other', 'message_length': 35}
-2025-09-23 16:28:58 | INFO | {'message': 'I just saw travel! It was weird.', 'author': 'Alice', 'timestamp': '2025-09-23 16:28:58', 'category': 'travel', 'sentiment': 0.59, 'keyword_mentioned': 'travel', 'message_length': 32}
+2025-09-25 23:17:49 | INFO | {'message': 'I just tried a trick! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:17:49', 'category': 'other', 'sentiment': 0.21, 'keyword_mentioned': 'other', 'message_length': 37}
+2025-09-25 23:17:52 | INFO | Processed message: {'message': 'I just tried a trick! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:17:49', 'category': 'other', 'sentiment': 0.21, 'keyword_mentioned': 'other', 'message_length': 37}
+2025-09-25 23:17:52 | INFO | Calling SQLite insert_message()
+2025-09-25 23:17:52 | INFO | message={'message': 'I just tried a trick! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:17:49', 'category': 'other', 'sentiment': 0.21, 'keyword_mentioned': 'other', 'message_length': 37}
+2025-09-25 23:17:52 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:17:52 | INFO | Inserted one message into the database.
+2025-09-25 23:17:54 | INFO | {'message': 'I just saw a movie! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-25 23:17:54', 'category': 'entertainment', 'sentiment': 0.02, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-25 23:17:57 | INFO | Processed message: {'message': 'I just saw a movie! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-25 23:17:54', 'category': 'entertainment', 'sentiment': 0.02, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-25 23:17:57 | INFO | Calling SQLite insert_message()
+2025-09-25 23:17:57 | INFO | message={'message': 'I just saw a movie! It was funny.', 'author': 'Eve', 'timestamp': '2025-09-25 23:17:54', 'category': 'entertainment', 'sentiment': 0.02, 'keyword_mentioned': 'movie', 'message_length': 33}
+2025-09-25 23:17:57 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:17:57 | INFO | Inserted one message into the database.
+2025-09-25 23:17:59 | INFO | {'message': 'I just saw Python! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-25 23:17:59', 'category': 'tech', 'sentiment': 0.33, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-25 23:18:02 | INFO | Processed message: {'message': 'I just saw Python! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-25 23:17:59', 'category': 'tech', 'sentiment': 0.33, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-25 23:18:02 | INFO | Calling SQLite insert_message()
+2025-09-25 23:18:02 | INFO | message={'message': 'I just saw Python! It was amazing.', 'author': 'Bob', 'timestamp': '2025-09-25 23:17:59', 'category': 'tech', 'sentiment': 0.33, 'keyword_mentioned': 'Python', 'message_length': 34}
+2025-09-25 23:18:02 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:18:02 | INFO | Inserted one message into the database.
+2025-09-25 23:18:04 | INFO | {'message': 'I just tried recipe! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:18:04', 'category': 'food', 'sentiment': 0.47, 'keyword_mentioned': 'recipe', 'message_length': 36}
+2025-09-25 23:18:07 | INFO | Processed message: {'message': 'I just tried recipe! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:18:04', 'category': 'food', 'sentiment': 0.47, 'keyword_mentioned': 'recipe', 'message_length': 36}
+2025-09-25 23:18:07 | INFO | Calling SQLite insert_message()
+2025-09-25 23:18:07 | INFO | message={'message': 'I just tried recipe! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:18:04', 'category': 'food', 'sentiment': 0.47, 'keyword_mentioned': 'recipe', 'message_length': 36}
+2025-09-25 23:18:07 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:18:07 | INFO | Inserted one message into the database.
+2025-09-25 23:18:09 | INFO | {'message': 'I just found a meme! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:18:09', 'category': 'humor', 'sentiment': 0.87, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-25 23:18:12 | INFO | Processed message: {'message': 'I just found a meme! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:18:09', 'category': 'humor', 'sentiment': 0.87, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-25 23:18:12 | INFO | Calling SQLite insert_message()
+2025-09-25 23:18:12 | INFO | message={'message': 'I just found a meme! It was amazing.', 'author': 'Alice', 'timestamp': '2025-09-25 23:18:09', 'category': 'humor', 'sentiment': 0.87, 'keyword_mentioned': 'meme', 'message_length': 36}
+2025-09-25 23:18:12 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:18:12 | INFO | Inserted one message into the database.
+2025-09-25 23:18:14 | INFO | {'message': 'I just shared JavaScript! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-25 23:18:14', 'category': 'tech', 'sentiment': 0.41, 'keyword_mentioned': 'JavaScript', 'message_length': 41}
+2025-09-25 23:18:17 | INFO | Processed message: {'message': 'I just shared JavaScript! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-25 23:18:14', 'category': 'tech', 'sentiment': 0.41, 'keyword_mentioned': 'JavaScript', 'message_length': 41}
+2025-09-25 23:18:17 | INFO | Calling SQLite insert_message()
+2025-09-25 23:18:17 | INFO | message={'message': 'I just shared JavaScript! It was amazing.', 'author': 'Eve', 'timestamp': '2025-09-25 23:18:14', 'category': 'tech', 'sentiment': 0.41, 'keyword_mentioned': 'JavaScript', 'message_length': 41}
+2025-09-25 23:18:17 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:18:17 | INFO | Inserted one message into the database.
+2025-09-25 23:18:19 | INFO | {'message': 'I just tried recipe! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-25 23:18:19', 'category': 'food', 'sentiment': 0.82, 'keyword_mentioned': 'recipe', 'message_length': 34}
+2025-09-25 23:18:22 | INFO | Processed message: {'message': 'I just tried recipe! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-25 23:18:19', 'category': 'food', 'sentiment': 0.82, 'keyword_mentioned': 'recipe', 'message_length': 34}
+2025-09-25 23:18:22 | INFO | Calling SQLite insert_message()
+2025-09-25 23:18:22 | INFO | message={'message': 'I just tried recipe! It was funny.', 'author': 'Charlie', 'timestamp': '2025-09-25 23:18:19', 'category': 'food', 'sentiment': 0.82, 'keyword_mentioned': 'recipe', 'message_length': 34}
+2025-09-25 23:18:22 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:18:22 | INFO | Inserted one message into the database.
+2025-09-25 23:18:24 | INFO | {'message': 'I just saw recipe! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-25 23:18:24', 'category': 'food', 'sentiment': 0.27, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-25 23:18:27 | INFO | Processed message: {'message': 'I just saw recipe! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-25 23:18:24', 'category': 'food', 'sentiment': 0.27, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-25 23:18:27 | INFO | Calling SQLite insert_message()
+2025-09-25 23:18:27 | INFO | message={'message': 'I just saw recipe! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-25 23:18:24', 'category': 'food', 'sentiment': 0.27, 'keyword_mentioned': 'recipe', 'message_length': 35}
+2025-09-25 23:18:27 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:18:27 | INFO | Inserted one message into the database.
+2025-09-25 23:18:29 | INFO | {'message': 'I just tried recipe! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-25 23:18:29', 'category': 'food', 'sentiment': 0.57, 'keyword_mentioned': 'recipe', 'message_length': 37}
+2025-09-25 23:18:32 | INFO | Processed message: {'message': 'I just tried recipe! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-25 23:18:29', 'category': 'food', 'sentiment': 0.57, 'keyword_mentioned': 'recipe', 'message_length': 37}
+2025-09-25 23:18:32 | INFO | Calling SQLite insert_message()
+2025-09-25 23:18:32 | INFO | message={'message': 'I just tried recipe! It was exciting.', 'author': 'Bob', 'timestamp': '2025-09-25 23:18:29', 'category': 'food', 'sentiment': 0.57, 'keyword_mentioned': 'recipe', 'message_length': 37}
+2025-09-25 23:18:32 | INFO | db_path=C:/Users/USER/buzzline-05-kabore/data/buzz.sqlite
+2025-09-25 23:18:32 | INFO | Inserted one message into the database.
+2025-09-25 23:18:34 | INFO | Logging to file: logs/project_log.log
+2025-09-25 23:18:34 | INFO | Log sanitization enabled, personal info removed
